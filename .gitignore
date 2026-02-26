@@ -1,0 +1,7 @@
+# Rust
+target
+
+# Nix
+.direnv
+result
+result-*
