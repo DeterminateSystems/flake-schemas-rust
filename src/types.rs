@@ -85,6 +85,18 @@ pub struct InspectOutput {
     pub inventory: BTreeMap<String, InventoryItem>,
 }
 
+impl InspectOutput {
+    /// Create an empty inspection result.
+    /// This is useful in code paths that wish to avoid inspecting flakes for various reasons.
+    pub fn new() -> Self {
+        Self {
+            version: 1,
+            docs: Default::default(),
+            inventory: Default::default(),
+        }
+    }
+}
+
 impl InventoryItem {
     fn for_each_item_impl<T>(
         &self,
