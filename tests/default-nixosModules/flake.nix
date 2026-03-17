@@ -1,11 +1,10 @@
 {
   description = "Flake exercising the built-in `nixosModules` schema";
 
-  inputs = {};
+  inputs = { };
 
-  outputs = _:
-  {
+  outputs = _: {
     nixosModules.file = ./module.nix;
-    nixosModules.inline = _: {};
+    nixosModules.inline = _: { };
   };
 }

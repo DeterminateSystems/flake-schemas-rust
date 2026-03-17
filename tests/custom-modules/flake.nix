@@ -11,15 +11,13 @@
       '';
 
       inventory = output: {
-        children = builtins.mapAttrs (
-          name: module: {
-            what = "customModule";
-          }
-        ) output;
+        children = builtins.mapAttrs (name: module: {
+          what = "customModule";
+        }) output;
       };
     };
 
     customModules.file = ./module.nix;
-    customModules.inline = _: {};
+    customModules.inline = _: { };
   };
 }
