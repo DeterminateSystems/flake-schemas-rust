@@ -10,15 +10,58 @@ mod tests;
 pub use error::*;
 pub use types::*;
 
-const INSPECT_FLAKE_REF: &str =
+const INSPECT_INCLUDING_OUTPUTS: &str =
     "https://flakehub.com/f/DeterminateSystems/inspect/*#contents.includingOutputPaths";
+const INSPECT_EXCLUDING_OUTPUTS: &str =
+    "https://flakehub.com/f/DeterminateSystems/inspect/*#contents.excludingOutputPaths";
 
 /// The primary entry point to this crate.
 /// It returns the parsed output of running `nix eval` on the [`inspect` flake][1] for a given flake reference.
+/// If output paths are not required, see [`InspectOptions`] and [`inspect_with_options`].
 ///
 /// [1]: https://github.com/DeterminateSystems/inspect
 #[inline]
 pub fn inspect(flake_ref: impl AsRef<OsStr>) -> Result<InspectOutput> {
+    inspect_with_options(flake_ref, &Default::default())
+}
+
+/// Options controlling the `inspect` flake's behavior.
+/// By default, output paths are requested.
+#[derive(Debug, Clone)]
+pub struct InspectOptions {
+    with_output: bool,
+}
+
+impl InspectOptions {
+    pub fn new() -> InspectOptions {
+        Self { with_output: true }
+    }
+
+    /// Determine whether or not this should include output paths in the inventory.
+    pub fn with_output(mut self, with_output: bool) -> Self {
+        self.with_output = with_output;
+        self
+    }
+}
+
+impl Default for InspectOptions {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+/// Alternative entry point for inventorying a flake.
+/// If customization options are not needed, prefer using [`inspect`].
+pub fn inspect_with_options(
+    flake_ref: impl AsRef<OsStr>,
+    options: &InspectOptions,
+) -> Result<InspectOutput> {
+    let inspect_flake_ref = if options.with_output {
+        INSPECT_INCLUDING_OUTPUTS
+    } else {
+        INSPECT_EXCLUDING_OUTPUTS
+    };
+
     let mut command = Command::new("nix");
     let pipe = command
         .arg("eval")
@@ -27,7 +70,7 @@ pub fn inspect(flake_ref: impl AsRef<OsStr>) -> Result<InspectOutput> {
         .arg("--override-input")
         .arg("flake")
         .arg(flake_ref)
-        .arg(INSPECT_FLAKE_REF)
+        .arg(inspect_flake_ref)
         .stdin(Stdio::null())
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
