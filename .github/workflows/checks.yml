@@ -36,7 +36,7 @@ jobs:
 
       - name: Cargo tests
         if: success() || failure()
-        run: nix develop -c cargo test -- --ignored
+        run: nix develop -c cargo test
 
   DeterminateCI:
     needs: Checks

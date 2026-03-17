@@ -21,7 +21,6 @@ fn do_test(path: &str, expected: InspectOutput) {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn empty() {
     // Test: an empty flake shouldn't surprise us with unexpected output
     do_test(
@@ -35,7 +34,6 @@ fn empty() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn custom_by_system() {
     // Test: Ensure that custom schemas can mimic the `formatter` output (that is, { output.${system} = derivation; } works)
     do_test(
@@ -76,7 +74,6 @@ fn custom_by_system() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn custom_collection_by_system() {
     do_test(
         "./tests/custom-collectionBySystem",
@@ -195,7 +192,6 @@ fn custom_collection_by_system() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn custom_nested_by_system() {
     do_test(
         "./tests/custom-nestedBySystem",
@@ -264,7 +260,6 @@ fn custom_nested_by_system() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn custom_ignored() {
     // Test: don't inventory outputs, even if there's a custom schema that covers something else
     do_test(
@@ -278,7 +273,6 @@ fn custom_ignored() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn custom_modules() {
     // Test: ensure that custom schemas can mimic modules
     do_test(
@@ -314,7 +308,6 @@ fn custom_modules() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn default_devshells() {
     do_test(
         "./tests/default-devShells",
@@ -380,7 +373,6 @@ fn default_devshells() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn default_formatter() {
     do_test(
         "./tests/default-formatter",
@@ -419,7 +411,6 @@ fn default_formatter() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn default_ignored() {
     // Test: if a flake's outputs don't have a schema, we shouldn't see them in the inventory
     do_test(
@@ -433,7 +424,6 @@ fn default_ignored() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn default_home_configurations() {
     do_test(
         "./tests/default-homeConfigurations",
@@ -472,7 +462,6 @@ fn default_home_configurations() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn default_legacy_packages() {
     do_test(
         "./tests/default-legacyPackages",
@@ -491,7 +480,6 @@ fn default_legacy_packages() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn default_nixos_configurations() {
     do_test(
         "./tests/default-nixosConfigurations",
@@ -530,7 +518,6 @@ fn default_nixos_configurations() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn default_nixos_modules() {
     do_test(
         "./tests/default-nixosModules",
@@ -565,7 +552,6 @@ fn default_nixos_modules() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn default_overlays() {
     do_test(
         "./tests/default-overlays",
@@ -602,7 +588,6 @@ Overlays add additional packages or modify or replace existing packages.
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn default_packages() {
     do_test(
         "./tests/default-packages",
@@ -673,7 +658,6 @@ fn default_packages() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn legacy_by_system() {
     // Test: Ensure that custom schemas can mimic the `formatter` output (that is, { output.${system} = derivation; } works)
     do_test(
@@ -714,7 +698,6 @@ fn legacy_by_system() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn legacy_collection_by_system() {
     do_test(
         "./tests/legacy-collectionBySystem",
@@ -833,7 +816,6 @@ fn legacy_collection_by_system() {
 }
 
 #[test]
-#[ignore = "needs nix"]
 fn legacy_nested_by_system() {
     do_test(
         "./tests/legacy-nestedBySystem",

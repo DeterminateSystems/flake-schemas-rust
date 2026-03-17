@@ -57,11 +57,6 @@
             inherit src;
             cargoArtifacts = deps;
           };
-
-          cargo-test = craneLib.cargoTest {
-            inherit src;
-            cargoArtifacts = deps;
-          };
         }
       );
 
@@ -79,10 +74,6 @@
               "https://flakehub.com/f/DeterminateSystems/inspect/*#contents.includingOutputPaths"
           '';
 
-          run-tests = pkgs.writeShellScriptBin "run-tests" ''
-            cargo test --all -- --ignored
-          '';
-
           serve-docs =
             let
               http-server = lib.getExe pkgs.http-server;
@@ -97,7 +88,6 @@
           default = pkgs.mkShell {
             packages = [
               inspect
-              run-tests
               serve-docs
               toolchain
 
