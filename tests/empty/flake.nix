@@ -1,7 +1,7 @@
 {
   description = "An empty flake";
 
-  inputs = {};
+  inputs = { };
 
-  outputs = _: {};
+  outputs = _: { };
 }

@@ -1,10 +1,10 @@
 {
   description = "Flake exercising the default `overlays` schema";
 
-  inputs = {};
+  inputs = { };
 
   outputs = _: {
-    overlays.default = _: _: {};
-    overlays.other = _: _: {};
+    overlays.default = _: _: { };
+    overlays.other = _: _: { };
   };
 }
