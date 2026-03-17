@@ -97,6 +97,12 @@ impl InspectOutput {
     }
 }
 
+impl Default for InspectOutput {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl InventoryItem {
     fn for_each_item_impl<T>(
         &self,
