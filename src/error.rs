@@ -10,6 +10,6 @@ pub enum Error {
     #[error(transparent)]
     JSON(#[from] serde_json::Error),
 
-    #[error("`nix eval` did not succeed: exit {status}")]
+    #[error("`nix eval` did not succeed: {status}; stderr: {stderr}")]
     ExitFailure { status: ExitStatus, stderr: String },
 }
