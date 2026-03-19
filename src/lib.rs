@@ -1,4 +1,5 @@
 use std::ffi::OsStr;
+use std::path::PathBuf;
 use std::process::{Command, Stdio};
 
 mod error;
@@ -30,16 +31,28 @@ pub fn inspect(flake_ref: impl AsRef<OsStr>) -> Result<InspectOutput> {
 #[derive(Debug, Clone)]
 pub struct InspectOptions {
     with_output: bool,
+    nix_path: PathBuf,
 }
 
 impl InspectOptions {
     pub fn new() -> InspectOptions {
-        Self { with_output: true }
+        Self {
+            with_output: true,
+            nix_path: "nix".into(),
+        }
     }
 
     /// Determine whether or not this should include output paths in the inventory.
     pub fn with_output(mut self, with_output: bool) -> Self {
         self.with_output = with_output;
+        self
+    }
+
+    /// Specify a custom path to the `nix` binary.
+    ///
+    /// The default is simply `nix`.
+    pub fn with_nix_path(mut self, nix_path: impl Into<PathBuf>) -> Self {
+        self.nix_path = nix_path.into();
         self
     }
 }
@@ -62,7 +75,7 @@ pub fn inspect_with_options(
         INSPECT_EXCLUDING_OUTPUTS
     };
 
-    let mut command = Command::new("nix");
+    let mut command = Command::new(&options.nix_path);
     let pipe = command
         .arg("eval")
         .arg("--json")
