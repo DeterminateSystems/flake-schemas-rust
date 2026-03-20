@@ -34,6 +34,39 @@ fn empty() {
 }
 
 #[test]
+fn custom_bespoke() {
+    do_test(
+        "./tests/custom-bespoke",
+        InspectOutput {
+            version: 1,
+            docs: kv_map! {
+                "bespoke": "The `The `bespoke` flake output exposes a bespoke flake output, such as a library function or code meant to be printed as JSON.\n",
+            },
+            inventory: kv_map! {
+                "bespoke": Collection {
+                    children: kv_map! {
+                        "foo": Entry {
+                            derivation: None,
+                            for_systems: None,
+                            outputs: None,
+                            short_description: None,
+                            what: "".into(),
+                        },
+                        "bar": Entry {
+                            derivation: None,
+                            for_systems: None,
+                            outputs: None,
+                            short_description: Some("bar contains a description".into()),
+                            what: "".into(),
+                        },
+                    }
+                }
+            },
+        },
+    );
+}
+
+#[test]
 fn custom_by_system() {
     // Test: Ensure that custom schemas can mimic the `formatter` output (that is, { output.${system} = derivation; } works)
     do_test(
