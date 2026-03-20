@@ -45,7 +45,7 @@ fn custom_modules() {
             "customModules": Collection {
                 children: kv_map! {
                     "file": Entry {
-                        what: "customModule".into(),
+                        what: Some("customModule".into()),
                         short_description: None,
                         for_systems: None,
                         derivation: None,
@@ -53,7 +53,7 @@ fn custom_modules() {
                     },
 
                     "inline": Entry {
-                        what: "customModule".into(),
+                        what: Some("customModule".into()),
                         short_description: None,
                         for_systems: None,
                         derivation: None,
@@ -107,7 +107,7 @@ fn default_formatter() {
             "formatter": Collection {
                 children: kv_map! {
                     "aarch64-darwin": Entry {
-                        what: "formatter".into(),
+                        what: Some("formatter".into()),
                         short_description: Some("".into()),
                         for_systems: Some(set!["aarch64-darwin"]),
                         derivation: Some("/nix/store/1qrjgbhp9m8qmaik22yqivncgidzrzsw-formatter.drv".into()),
@@ -117,7 +117,7 @@ fn default_formatter() {
                     },
 
                     "x86_64-linux": Entry {
-                        what: "formatter".into(),
+                        what: Some("formatter".into()),
                         short_description: Some("".into()),
                         for_systems: Some(set!["x86_64-linux"]),
                         derivation: Some("/nix/store/lr0j2n0a8xxzfwkabid29hj1fw73f3h3-formatter.drv".into()),
