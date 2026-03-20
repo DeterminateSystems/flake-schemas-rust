@@ -40,7 +40,7 @@ fn custom_bespoke() {
         InspectOutput {
             version: 1,
             docs: kv_map! {
-                "bespoke": "The `The `bespoke` flake output exposes a bespoke flake output, such as a library function or code meant to be printed as JSON.\n",
+                "bespoke": "The `bespoke` flake output exposes a bespoke flake output, such as a library function or code meant to be printed as JSON.\n",
             },
             inventory: kv_map! {
                 "bespoke": Collection {
@@ -50,14 +50,14 @@ fn custom_bespoke() {
                             for_systems: None,
                             outputs: None,
                             short_description: None,
-                            what: "".into(),
+                            what: None,
                         },
                         "bar": Entry {
                             derivation: None,
                             for_systems: None,
                             outputs: None,
                             short_description: Some("bar contains a description".into()),
-                            what: "".into(),
+                            what: None,
                         },
                     }
                 }
@@ -80,7 +80,7 @@ fn custom_by_system() {
                 "bySystem": Collection {
                     children: kv_map! {
                         "aarch64-darwin": Entry {
-                            what: "bySystem".into(),
+                            what: Some("bySystem".into()),
                             short_description: Some("".into()),
                             for_systems: Some(set!["aarch64-darwin"]),
                             derivation: Some("/nix/store/0hbva7czr00sf4m97jlw4swagc8ccz87-simple.drv".into()),
@@ -90,7 +90,7 @@ fn custom_by_system() {
                             })
                         },
                         "x86_64-linux": Entry {
-                            what: "bySystem".into(),
+                            what: Some("bySystem".into()),
                             short_description: Some("".into()),
                             for_systems: Some(set!["x86_64-linux"]),
                             derivation: Some("/nix/store/pxlb58dhphzbzhk40gbasdlaxnrjxndr-simple.drv".into()),
@@ -123,7 +123,7 @@ fn custom_collection_by_system() {
                                 "default": Collection {
                                     children: kv_map! {
                                         "bar": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("".into()),
                                             for_systems: Some(set!["aarch64-darwin"]),
                                             derivation: Some("/nix/store/d39z97pvwv04lvfrrwqbc3g2sq49gdg1-collection-default-bar.drv".into()),
@@ -132,7 +132,7 @@ fn custom_collection_by_system() {
                                             }),
                                         },
                                         "foo": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("".into()),
                                             for_systems: Some(set!["aarch64-darwin"]),
                                             derivation: Some("/nix/store/hxg4vk2knpldpyb1nc7xjw339jsgizc9-collection-default-foo.drv".into()),
@@ -146,7 +146,7 @@ fn custom_collection_by_system() {
                                 "description": Collection {
                                     children: kv_map! {
                                         "bar": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("The `bar` output of the `description` collection".into()),
                                             for_systems: Some(set!["aarch64-darwin"]),
                                             derivation: Some("/nix/store/v3ychybm80s9lkjkk3grwy8ygwr1p7zi-collection-description-bar.drv".into()),
@@ -155,7 +155,7 @@ fn custom_collection_by_system() {
                                             }),
                                         },
                                         "foo": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("The `foo` output of the `description` collection".into()),
                                             for_systems: Some(set!["aarch64-darwin"]),
                                             derivation: Some("/nix/store/cz32kxw19d9hn8kzy42xqsj0r57napvf-collection-description-foo.drv".into()),
@@ -173,7 +173,7 @@ fn custom_collection_by_system() {
                                 "default": Collection {
                                     children: kv_map! {
                                         "bar": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("".into()),
                                             for_systems: Some(set!["x86_64-linux"]),
                                             derivation: Some("/nix/store/6ivswh0y9dnw7chyzqbykvdwhfw1r4xn-collection-default-bar.drv".into()),
@@ -182,7 +182,7 @@ fn custom_collection_by_system() {
                                             }),
                                         },
                                         "foo": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("".into()),
                                             for_systems: Some(set!["x86_64-linux"]),
                                             derivation: Some("/nix/store/gy5pmk2br6w2c69p8j08ndrpy1l2yj55-collection-default-foo.drv".into()),
@@ -196,7 +196,7 @@ fn custom_collection_by_system() {
                                 "description": Collection {
                                     children: kv_map! {
                                         "bar": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("The `bar` output of the `description` collection".into()),
                                             for_systems: Some(set!["x86_64-linux"]),
                                             derivation: Some("/nix/store/nm7nd8asviddd4cn6qylh4id7y8x7z4k-collection-description-bar.drv".into()),
@@ -205,7 +205,7 @@ fn custom_collection_by_system() {
                                             }),
                                         },
                                         "foo": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("The `foo` output of the `description` collection".into()),
                                             for_systems: Some(set!["x86_64-linux"]),
                                             derivation: Some("/nix/store/2vnzwljjz9nikl372ksjb2x4zymava62-collection-description-foo.drv".into()),
@@ -239,7 +239,7 @@ fn custom_nested_by_system() {
                         "aarch64-darwin": Collection {
                             children: kv_map! {
                                 "default": Entry {
-                                    what: "nestedBySystem".into(),
+                                    what: Some("nestedBySystem".into()),
                                     short_description: Some("".into()),
                                     for_systems: Some(set!["aarch64-darwin"]),
                                     derivation: Some("/nix/store/jgqjdxgjh762dmczvj6x54npk52vvdh7-system-default.drv".into()),
@@ -249,7 +249,7 @@ fn custom_nested_by_system() {
                                     }),
                                 },
                                 "description": Entry {
-                                    what: "nestedBySystem".into(),
+                                    what: Some("nestedBySystem".into()),
                                     short_description: Some("a nestedBySystem derivation with a description".into()),
                                     for_systems: Some(set!["aarch64-darwin"]),
                                     derivation: Some("/nix/store/3i1fydlawif9vvkrkzlamfbg5k49s0hw-system-description.drv".into()),
@@ -264,7 +264,7 @@ fn custom_nested_by_system() {
                         "x86_64-linux": Collection {
                             children: kv_map! {
                                 "default": Entry {
-                                    what: "nestedBySystem".into(),
+                                    what: Some("nestedBySystem".into()),
                                     short_description: Some("".into()),
                                     for_systems: Some(set!["x86_64-linux"]),
                                     derivation: Some("/nix/store/jpnmfd0057k8dz0viwpyc621v2fkcp21-system-default.drv".into()),
@@ -274,7 +274,7 @@ fn custom_nested_by_system() {
                                     }),
                                 },
                                 "description": Entry {
-                                    what: "nestedBySystem".into(),
+                                    what: Some("nestedBySystem".into()),
                                     short_description: Some("a nestedBySystem derivation with a description".into()),
                                     for_systems: Some(set!["x86_64-linux"]),
                                     derivation: Some("/nix/store/ggy02x051ragig56864ahkljsvzhx6dd-system-description.drv".into()),
@@ -319,7 +319,7 @@ fn custom_modules() {
                 "customModules": Collection {
                     children: kv_map! {
                         "file": Entry {
-                            what: "customModule".into(),
+                            what: Some("customModule".into()),
                             short_description: None,
                             for_systems: None,
                             derivation: None,
@@ -327,7 +327,7 @@ fn custom_modules() {
                         },
 
                         "inline": Entry {
-                            what: "customModule".into(),
+                            what: Some("customModule".into()),
                             short_description: None,
                             for_systems: None,
                             derivation: None,
@@ -355,7 +355,7 @@ fn default_devshells() {
                         "aarch64-darwin": Collection {
                             children: kv_map! {
                                 "default": Entry {
-                                    what: "development environment".into(),
+                                    what: Some("development environment".into()),
                                     short_description: Some("".into()),
                                     for_systems: Some(set!["aarch64-darwin"]),
                                     derivation: Some("/nix/store/h7ccb1z1dhy19yih7h65awppmy68liws-devShells-default.drv".into()),
@@ -364,7 +364,7 @@ fn default_devshells() {
                                     }),
                                 },
                                 "description": Entry {
-                                    what: "development environment".into(),
+                                    what: Some("development environment".into()),
                                     short_description: Some("a devShell with a description".into()),
                                     for_systems: Some(set!["aarch64-darwin"]),
                                     derivation: Some("/nix/store/pxkgrfggfngfj4imw8ndgsfaq6zkvh3n-devShells-description.drv".into()),
@@ -378,7 +378,7 @@ fn default_devshells() {
                         "x86_64-linux": Collection {
                             children: kv_map! {
                                 "default": Entry {
-                                    what: "development environment".into(),
+                                    what: Some("development environment".into()),
                                     short_description: Some("".into()),
                                     for_systems: Some(set!["x86_64-linux"]),
                                     derivation: Some("/nix/store/kaw66walr42pw81vi2lvmvrh60yx5x7a-devShells-default.drv".into()),
@@ -387,7 +387,7 @@ fn default_devshells() {
                                     }),
                                 },
                                 "description": Entry {
-                                    what: "development environment".into(),
+                                    what: Some("development environment".into()),
                                     short_description: Some("a devShell with a description".into()),
                                     for_systems: Some(set!["x86_64-linux"]),
                                     derivation: Some("/nix/store/cxrd9yhac4xybx0vb2hqmv9c3lkanfa6-devShells-description.drv".into()),
@@ -418,7 +418,7 @@ fn default_formatter() {
                 "formatter": Collection {
                     children: kv_map! {
                         "aarch64-darwin": Entry {
-                            what: "formatter".into(),
+                            what: Some("formatter".into()),
                             short_description: Some("".into()),
                             for_systems: Some(set!["aarch64-darwin"]),
                             derivation: Some("/nix/store/1qrjgbhp9m8qmaik22yqivncgidzrzsw-formatter.drv".into()),
@@ -428,7 +428,7 @@ fn default_formatter() {
                         },
 
                         "x86_64-linux": Entry {
-                            what: "formatter".into(),
+                            what: Some("formatter".into()),
                             short_description: Some("".into()),
                             for_systems: Some(set!["x86_64-linux"]),
                             derivation: Some("/nix/store/lr0j2n0a8xxzfwkabid29hj1fw73f3h3-formatter.drv".into()),
@@ -469,7 +469,7 @@ fn default_home_configurations() {
                 "homeConfigurations": Collection {
                     children: kv_map! {
                         "laptop": Entry {
-                            what: "Home Manager configuration".into(),
+                            what: Some("Home Manager configuration".into()),
                             short_description: None,
                             for_systems: Some(set!["aarch64-darwin"]),
                             derivation: Some("/nix/store/8m3k7dxaa2ja3m37lvkmai3zkcyl8psp-laptop.drv".into()),
@@ -479,7 +479,7 @@ fn default_home_configurations() {
                         },
 
                         "workstation": Entry {
-                            what: "Home Manager configuration".into(),
+                            what: Some("Home Manager configuration".into()),
                             short_description: None,
                             for_systems: Some(set!["x86_64-linux"]),
                             derivation: Some("/nix/store/hqzk8axwq1s5ivhmg6dzi92fvhhwvgmq-workstation.drv".into()),
@@ -525,7 +525,7 @@ fn default_nixos_configurations() {
                 "nixosConfigurations": Collection {
                     children: kv_map! {
                         "server": Entry {
-                            what: "NixOS configuration".into(),
+                            what: Some("NixOS configuration".into()),
                             short_description: None,
                             for_systems: Some(set!["aarch64-linux"]),
                             derivation: Some("/nix/store/jsk3cjnz8rnibzik13di2rzz7rr36aiw-nixos-system-server.drv".into()),
@@ -535,7 +535,7 @@ fn default_nixos_configurations() {
                         },
 
                         "workstation": Entry {
-                            what: "NixOS configuration".into(),
+                            what: Some("NixOS configuration".into()),
                             short_description: None,
                             for_systems: Some(set!["x86_64-linux"]),
                             derivation: Some("/nix/store/iyx2kmms29yisl9y1j8xrmh9fqkq33kx-nixos-system-workstation.drv".into()),
@@ -563,7 +563,7 @@ fn default_nixos_modules() {
                 "nixosModules": Collection {
                     children: kv_map! {
                         "file": Entry {
-                            what: "NixOS module".into(),
+                            what: Some("NixOS module".into()),
                             short_description: None,
                             for_systems: None,
                             derivation: None,
@@ -571,7 +571,7 @@ fn default_nixos_modules() {
                         },
 
                         "inline": Entry {
-                            what: "NixOS module".into(),
+                            what: Some("NixOS module".into()),
                             short_description: None,
                             for_systems: None,
                             derivation: None,
@@ -599,7 +599,7 @@ Overlays add additional packages or modify or replace existing packages.
                 "overlays": Collection {
                     children: kv_map! {
                         "default": Entry {
-                            what: "Nixpkgs overlay".into(),
+                            what: Some("Nixpkgs overlay".into()),
                             short_description: None,
                             for_systems: None,
                             derivation: None,
@@ -607,7 +607,7 @@ Overlays add additional packages or modify or replace existing packages.
                         },
 
                         "other": Entry {
-                            what: "Nixpkgs overlay".into(),
+                            what: Some("Nixpkgs overlay".into()),
                             short_description: None,
                             for_systems: None,
                             derivation: None,
@@ -635,7 +635,7 @@ fn default_packages() {
                         "aarch64-darwin": Collection {
                             children: kv_map! {
                                 "default": Entry {
-                                    what: "package".into(),
+                                    what: Some("package".into()),
                                     short_description: Some("".into()),
                                     for_systems: Some(set!["aarch64-darwin"]),
                                     derivation: Some("/nix/store/3b9q5shmmmc3a7614m8mm28ywailr561-packages-default.drv".into()),
@@ -646,7 +646,7 @@ fn default_packages() {
                                 },
 
                                 "description": Entry {
-                                    what: "package".into(),
+                                    what: Some("package".into()),
                                     short_description: Some("a package with a description".into()),
                                     for_systems: Some(set!["aarch64-darwin"]),
                                     derivation: Some("/nix/store/dry1mkjbjc5fy6g28836q6pykdv0g4gp-packages-description.drv".into()),
@@ -661,7 +661,7 @@ fn default_packages() {
                         "x86_64-linux": Collection {
                             children: kv_map! {
                                 "default": Entry {
-                                    what: "package".into(),
+                                    what: Some("package".into()),
                                     short_description: Some("".into()),
                                     for_systems: Some(set!["x86_64-linux"]),
                                     derivation: Some("/nix/store/23wwnr2p47p6id9kza6h0a07lysg4g1c-packages-default.drv".into()),
@@ -672,7 +672,7 @@ fn default_packages() {
                                 },
 
                                 "description": Entry {
-                                    what: "package".into(),
+                                    what: Some("package".into()),
                                     short_description: Some("a package with a description".into()),
                                     for_systems: Some(set!["x86_64-linux"]),
                                     derivation: Some("/nix/store/vfx86h8rdh5hngcmwmg5yiqq8phd3q4a-packages-description.drv".into()),
@@ -704,7 +704,7 @@ fn legacy_by_system() {
                 "bySystem": Collection {
                     children: kv_map! {
                         "aarch64-darwin": Entry {
-                            what: "bySystem".into(),
+                            what: Some("bySystem".into()),
                             short_description: Some("".into()),
                             for_systems: Some(set!["aarch64-darwin"]),
                             derivation: Some("/nix/store/0hbva7czr00sf4m97jlw4swagc8ccz87-simple.drv".into()),
@@ -714,7 +714,7 @@ fn legacy_by_system() {
                             })
                         },
                         "x86_64-linux": Entry {
-                            what: "bySystem".into(),
+                            what: Some("bySystem".into()),
                             short_description: Some("".into()),
                             for_systems: Some(set!["x86_64-linux"]),
                             derivation: Some("/nix/store/pxlb58dhphzbzhk40gbasdlaxnrjxndr-simple.drv".into()),
@@ -747,7 +747,7 @@ fn legacy_collection_by_system() {
                                 "default": Collection {
                                     children: kv_map! {
                                         "bar": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("".into()),
                                             for_systems: Some(set!["aarch64-darwin"]),
                                             derivation: Some("/nix/store/d39z97pvwv04lvfrrwqbc3g2sq49gdg1-collection-default-bar.drv".into()),
@@ -756,7 +756,7 @@ fn legacy_collection_by_system() {
                                             }),
                                         },
                                         "foo": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("".into()),
                                             for_systems: Some(set!["aarch64-darwin"]),
                                             derivation: Some("/nix/store/hxg4vk2knpldpyb1nc7xjw339jsgizc9-collection-default-foo.drv".into()),
@@ -770,7 +770,7 @@ fn legacy_collection_by_system() {
                                 "description": Collection {
                                     children: kv_map! {
                                         "bar": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("The `bar` output of the `description` collection".into()),
                                             for_systems: Some(set!["aarch64-darwin"]),
                                             derivation: Some("/nix/store/v3ychybm80s9lkjkk3grwy8ygwr1p7zi-collection-description-bar.drv".into()),
@@ -779,7 +779,7 @@ fn legacy_collection_by_system() {
                                             }),
                                         },
                                         "foo": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("The `foo` output of the `description` collection".into()),
                                             for_systems: Some(set!["aarch64-darwin"]),
                                             derivation: Some("/nix/store/cz32kxw19d9hn8kzy42xqsj0r57napvf-collection-description-foo.drv".into()),
@@ -797,7 +797,7 @@ fn legacy_collection_by_system() {
                                 "default": Collection {
                                     children: kv_map! {
                                         "bar": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("".into()),
                                             for_systems: Some(set!["x86_64-linux"]),
                                             derivation: Some("/nix/store/6ivswh0y9dnw7chyzqbykvdwhfw1r4xn-collection-default-bar.drv".into()),
@@ -806,7 +806,7 @@ fn legacy_collection_by_system() {
                                             }),
                                         },
                                         "foo": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("".into()),
                                             for_systems: Some(set!["x86_64-linux"]),
                                             derivation: Some("/nix/store/gy5pmk2br6w2c69p8j08ndrpy1l2yj55-collection-default-foo.drv".into()),
@@ -820,7 +820,7 @@ fn legacy_collection_by_system() {
                                 "description": Collection {
                                     children: kv_map! {
                                         "bar": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("The `bar` output of the `description` collection".into()),
                                             for_systems: Some(set!["x86_64-linux"]),
                                             derivation: Some("/nix/store/nm7nd8asviddd4cn6qylh4id7y8x7z4k-collection-description-bar.drv".into()),
@@ -829,7 +829,7 @@ fn legacy_collection_by_system() {
                                             }),
                                         },
                                         "foo": Entry {
-                                            what: "collectionBySystem".into(),
+                                            what: Some("collectionBySystem".into()),
                                             short_description: Some("The `foo` output of the `description` collection".into()),
                                             for_systems: Some(set!["x86_64-linux"]),
                                             derivation: Some("/nix/store/2vnzwljjz9nikl372ksjb2x4zymava62-collection-description-foo.drv".into()),
@@ -863,7 +863,7 @@ fn legacy_nested_by_system() {
                         "aarch64-darwin": Collection {
                             children: kv_map! {
                                 "default": Entry {
-                                    what: "nestedBySystem".into(),
+                                    what: Some("nestedBySystem".into()),
                                     short_description: Some("".into()),
                                     for_systems: Some(set!["aarch64-darwin"]),
                                     derivation: Some("/nix/store/jgqjdxgjh762dmczvj6x54npk52vvdh7-system-default.drv".into()),
@@ -873,7 +873,7 @@ fn legacy_nested_by_system() {
                                     }),
                                 },
                                 "description": Entry {
-                                    what: "nestedBySystem".into(),
+                                    what: Some("nestedBySystem".into()),
                                     short_description: Some("a nestedBySystem derivation with a description".into()),
                                     for_systems: Some(set!["aarch64-darwin"]),
                                     derivation: Some("/nix/store/3i1fydlawif9vvkrkzlamfbg5k49s0hw-system-description.drv".into()),
@@ -888,7 +888,7 @@ fn legacy_nested_by_system() {
                         "x86_64-linux": Collection {
                             children: kv_map! {
                                 "default": Entry {
-                                    what: "nestedBySystem".into(),
+                                    what: Some("nestedBySystem".into()),
                                     short_description: Some("".into()),
                                     for_systems: Some(set!["x86_64-linux"]),
                                     derivation: Some("/nix/store/jpnmfd0057k8dz0viwpyc621v2fkcp21-system-default.drv".into()),
@@ -898,7 +898,7 @@ fn legacy_nested_by_system() {
                                     }),
                                 },
                                 "description": Entry {
-                                    what: "nestedBySystem".into(),
+                                    what: Some("nestedBySystem".into()),
                                     short_description: Some("a nestedBySystem derivation with a description".into()),
                                     for_systems: Some(set!["x86_64-linux"]),
                                     derivation: Some("/nix/store/ggy02x051ragig56864ahkljsvzhx6dd-system-description.drv".into()),

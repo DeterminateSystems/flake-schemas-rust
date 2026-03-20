@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(test, derive(PartialEq))]
 pub struct Entry {
     /// The descriptor for this object, like "package" or "Nixpkgs overlay".
-    pub what: String,
+    pub what: Option<String>,
 
     /// The short description, if one is present.
     /// Most often, this is either always `Some` or always `None` for a given class of flake output.

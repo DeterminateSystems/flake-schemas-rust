@@ -18,7 +18,7 @@ macro_rules! set {
 #[test]
 fn collection_for_each_entry() {
     let entry_a = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry A".into()),
         derivation: Some("/nix/store/entry-a.drv".into()),
         for_systems: Some(set!["aarch64-linux"]),
@@ -28,7 +28,7 @@ fn collection_for_each_entry() {
     };
 
     let entry_b = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry B".into()),
         derivation: Some("/nix/store/entry-b.drv".into()),
         for_systems: Some(set!["x86_64-linux"]),
@@ -60,7 +60,7 @@ fn collection_for_each_entry() {
 #[test]
 fn collection_for_each_item() {
     let entry_a = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry A".into()),
         derivation: Some("/nix/store/entry-a.drv".into()),
         for_systems: Some(set!["aarch64-linux"]),
@@ -70,7 +70,7 @@ fn collection_for_each_item() {
     };
 
     let entry_b = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry B".into()),
         derivation: Some("/nix/store/entry-b.drv".into()),
         for_systems: Some(set!["x86_64-linux"]),
@@ -110,7 +110,7 @@ fn collection_for_each_item() {
 #[test]
 fn collection_for_each_item_with_break() {
     let entry_a = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry A".into()),
         derivation: Some("/nix/store/entry-a.drv".into()),
         for_systems: Some(set!["aarch64-linux"]),
@@ -120,7 +120,7 @@ fn collection_for_each_item_with_break() {
     };
 
     let entry_b = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry B".into()),
         derivation: Some("/nix/store/entry-b.drv".into()),
         for_systems: Some(set!["x86_64-linux"]),
@@ -155,7 +155,7 @@ fn collection_for_each_item_with_break() {
 #[test]
 fn inventory_entry_for_each_entry() {
     let entry = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("".into()),
         derivation: Some("/nix/store/derivation.drv".into()),
         for_systems: Some(set!["x86_64-linux"]),
@@ -179,7 +179,7 @@ fn inventory_entry_for_each_entry() {
 #[test]
 fn inventory_entry_for_each_item() {
     let entry = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("".into()),
         derivation: Some("/nix/store/derivation.drv".into()),
         for_systems: Some(set!["x86_64-linux"]),
@@ -206,7 +206,7 @@ fn inventory_entry_for_each_item() {
 #[test]
 fn inventory_collection_for_each_entry() {
     let entry_a = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry A".into()),
         derivation: Some("/nix/store/entry-a.drv".into()),
         for_systems: Some(set!["aarch64-linux"]),
@@ -216,7 +216,7 @@ fn inventory_collection_for_each_entry() {
     };
 
     let entry_b = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry B".into()),
         derivation: Some("/nix/store/entry-b.drv".into()),
         for_systems: Some(set!["x86_64-linux"]),
@@ -250,7 +250,7 @@ fn inventory_collection_for_each_entry() {
 #[test]
 fn inventory_collection_for_each_item() {
     let entry_a = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry A".into()),
         derivation: Some("/nix/store/entry-a.drv".into()),
         for_systems: Some(set!["aarch64-linux"]),
@@ -260,7 +260,7 @@ fn inventory_collection_for_each_item() {
     };
 
     let entry_b = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry B".into()),
         derivation: Some("/nix/store/entry-b.drv".into()),
         for_systems: Some(set!["x86_64-linux"]),
@@ -303,7 +303,7 @@ fn inventory_collection_for_each_item() {
 #[test]
 fn inventory_collection_for_each_item_with_break() {
     let entry_a = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry A".into()),
         derivation: Some("/nix/store/entry-a.drv".into()),
         for_systems: Some(set!["aarch64-linux"]),
@@ -313,7 +313,7 @@ fn inventory_collection_for_each_item_with_break() {
     };
 
     let entry_b = Entry {
-        what: "a derivation".into(),
+        what: Some("a derivation".into()),
         short_description: Some("Entry B".into()),
         derivation: Some("/nix/store/entry-b.drv".into()),
         for_systems: Some(set!["x86_64-linux"]),
@@ -346,7 +346,7 @@ fn inventory_collection_for_each_item_with_break() {
 #[test]
 fn flake_outputs_for_each_entry() {
     let entry_a = Entry {
-        what: "a formatter".into(),
+        what: Some("a formatter".into()),
         short_description: None,
         for_systems: Some(set!["aarch64-linux"]),
         derivation: Some("/nix/store/entry-a.drv".into()),
@@ -354,7 +354,7 @@ fn flake_outputs_for_each_entry() {
     };
 
     let entry_b = Entry {
-        what: "a formatter".into(),
+        what: Some("a formatter".into()),
         short_description: None,
         for_systems: Some(set!["x86_64-linux"]),
         derivation: Some("/nix/store/entry-b.drv".into()),
@@ -362,7 +362,7 @@ fn flake_outputs_for_each_entry() {
     };
 
     let entry_c = Entry {
-        what: "a package".into(),
+        what: Some("a package".into()),
         short_description: None,
         for_systems: Some(set!["x86_64-linux"]),
         derivation: Some("/nix/store/entry-c.drv".into()),
@@ -408,7 +408,7 @@ fn flake_outputs_for_each_entry() {
 #[test]
 fn flake_outputs_for_each_item() {
     let entry_a = Entry {
-        what: "a formatter".into(),
+        what: Some("a formatter".into()),
         short_description: None,
         for_systems: Some(set!["aarch64-linux"]),
         derivation: Some("/nix/store/entry-a.drv".into()),
@@ -416,7 +416,7 @@ fn flake_outputs_for_each_item() {
     };
 
     let entry_b = Entry {
-        what: "a formatter".into(),
+        what: Some("a formatter".into()),
         short_description: None,
         for_systems: Some(set!["x86_64-linux"]),
         derivation: Some("/nix/store/entry-b.drv".into()),
@@ -424,7 +424,7 @@ fn flake_outputs_for_each_item() {
     };
 
     let entry_c = Entry {
-        what: "a package".into(),
+        what: Some("a package".into()),
         short_description: None,
         for_systems: Some(set!["x86_64-linux"]),
         derivation: Some("/nix/store/entry-c.drv".into()),
@@ -476,7 +476,7 @@ fn flake_outputs_for_each_item() {
 #[test]
 fn flake_outputs_for_each_item_with_break() {
     let entry_a = Entry {
-        what: "a formatter".into(),
+        what: Some("a formatter".into()),
         short_description: None,
         for_systems: Some(set!["aarch64-linux"]),
         derivation: Some("/nix/store/entry-a.drv".into()),
@@ -484,7 +484,7 @@ fn flake_outputs_for_each_item_with_break() {
     };
 
     let entry_b = Entry {
-        what: "a formatter".into(),
+        what: Some("a formatter".into()),
         short_description: None,
         for_systems: Some(set!["x86_64-linux"]),
         derivation: Some("/nix/store/entry-b.drv".into()),
@@ -492,7 +492,7 @@ fn flake_outputs_for_each_item_with_break() {
     };
 
     let entry_c = Entry {
-        what: "a package".into(),
+        what: Some("a package".into()),
         short_description: None,
         for_systems: Some(set!["x86_64-linux"]),
         derivation: Some("/nix/store/entry-c.drv".into()),
