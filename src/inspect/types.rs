@@ -72,7 +72,7 @@ impl From<Entry> for InventoryItem {
 #[derive(Debug, Clone, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 #[cfg_attr(test, derive(PartialEq))]
-pub struct InspectOutput {
+pub struct Output {
     // TODO(gustavderdrache): validate that this is always 1
     /// The version of this output.
     /// Should always be 1.
@@ -85,7 +85,7 @@ pub struct InspectOutput {
     pub inventory: BTreeMap<String, InventoryItem>,
 }
 
-impl InspectOutput {
+impl Output {
     /// Create an empty inspection result.
     /// This is useful in code paths that wish to avoid inspecting flakes for various reasons.
     pub fn new() -> Self {
@@ -97,7 +97,7 @@ impl InspectOutput {
     }
 }
 
-impl Default for InspectOutput {
+impl Default for Output {
     fn default() -> Self {
         Self::new()
     }
@@ -217,7 +217,7 @@ impl Collection {
     }
 }
 
-impl InspectOutput {
+impl Output {
     /// Visit each [`InventoryItem`] recursively.
     /// The `visitor` callback is expected to return a [`ControlFlow`] indicating if recursive processing should continue.
     ///

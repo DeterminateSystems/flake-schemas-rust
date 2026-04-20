@@ -1,6 +1,6 @@
 use pretty_assertions::assert_eq;
 
-use crate::{Collection, Entry, InspectOutput};
+use crate::inspect::{Collection, Entry, Output};
 
 // Helper macro to simplify writing maps because otherwise these tests will take even longer to write than they already do
 macro_rules! kv_map {
@@ -14,7 +14,7 @@ macro_rules! set {
     [$head:tt $(, $tail:tt)* $(,)?] => { [$head.into() $(, $tail.into())* ].into() };
 }
 
-fn do_test(path: &str, expected: InspectOutput) {
+fn do_test(path: &str, expected: Output) {
     let actual = crate::inspect(path).unwrap();
 
     assert_eq!(actual, expected, "Inspecting flake at {path}");
@@ -25,7 +25,7 @@ fn empty() {
     // Test: an empty flake shouldn't surprise us with unexpected output
     do_test(
         "./tests/empty",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {},
             inventory: kv_map! {},
@@ -37,7 +37,7 @@ fn empty() {
 fn custom_bespoke() {
     do_test(
         "./tests/custom-bespoke",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "bespoke": "The `bespoke` flake output exposes a bespoke flake output, such as a library function or code meant to be printed as JSON.\n",
@@ -71,7 +71,7 @@ fn custom_by_system() {
     // Test: Ensure that custom schemas can mimic the `formatter` output (that is, { output.${system} = derivation; } works)
     do_test(
         "./tests/custom-bySystem",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "bySystem": "The `bySystem` flake output defines a per-system output, like a flake's `formatter`.\n",
@@ -110,7 +110,7 @@ fn custom_by_system() {
 fn custom_collection_by_system() {
     do_test(
         "./tests/custom-collectionBySystem",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "collectionBySystem": "The `collectionBySystem` output defines, per system, named collections instead of individual packages.\n",
@@ -228,7 +228,7 @@ fn custom_collection_by_system() {
 fn custom_nested_by_system() {
     do_test(
         "./tests/custom-nestedBySystem",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "nestedBySystem": "The `nestedBySystem` output defines multiple per-system outputs, like a flake's `packages`.\n",
@@ -297,7 +297,7 @@ fn custom_ignored() {
     // Test: don't inventory outputs, even if there's a custom schema that covers something else
     do_test(
         "./tests/custom-ignored",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {},
             inventory: kv_map! {},
@@ -310,7 +310,7 @@ fn custom_modules() {
     // Test: ensure that custom schemas can mimic modules
     do_test(
         "./tests/custom-modules",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "customModules": "The `customModules` flake output defines something the NixOS module system would consume.\n",
@@ -344,7 +344,7 @@ fn custom_modules() {
 fn default_devshells() {
     do_test(
         "./tests/default-devShells",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "devShells": "The `devShells` flake output contains derivations that provide a development environment for `nix develop`.\n",
@@ -409,7 +409,7 @@ fn default_devshells() {
 fn default_formatter() {
     do_test(
         "./tests/default-formatter",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "formatter": "The `formatter` output specifies the package to use to format the project.\n",
@@ -448,7 +448,7 @@ fn default_ignored() {
     // Test: if a flake's outputs don't have a schema, we shouldn't see them in the inventory
     do_test(
         "./tests/default-ignored",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {},
             inventory: kv_map! {},
@@ -460,7 +460,7 @@ fn default_ignored() {
 fn default_home_configurations() {
     do_test(
         "./tests/default-homeConfigurations",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "homeConfigurations": "The `homeConfigurations` flake output defines [Home Manager configurations](https://github.com/nix-community/home-manager).\n"
@@ -498,7 +498,7 @@ fn default_home_configurations() {
 fn default_legacy_packages() {
     do_test(
         "./tests/default-legacyPackages",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "legacyPackages": "The `legacyPackages` flake output is similar to `packages`, but it can be nested (i.e. contain attribute sets that contain more packages).\nSince enumerating the packages in nested attribute sets is inefficient, `legacyPackages` should be avoided in favor of `packages`.\n\nNote: the contents of `legacyPackages` are not shown in FlakeHub.\n",
@@ -516,7 +516,7 @@ fn default_legacy_packages() {
 fn default_nixos_configurations() {
     do_test(
         "./tests/default-nixosConfigurations",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "nixosConfigurations": "The `nixosConfigurations` flake output defines [NixOS system configurations](https://nixos.org/manual/nixos/stable/#ch-configuration).\n",
@@ -554,7 +554,7 @@ fn default_nixos_configurations() {
 fn default_nixos_modules() {
     do_test(
         "./tests/default-nixosModules",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "nixosModules": "The `nixosModules` flake output defines importable [NixOS modules](https://nixos.org/manual/nixos/stable/#sec-writing-modules).\n",
@@ -588,7 +588,7 @@ fn default_nixos_modules() {
 fn default_overlays() {
     do_test(
         "./tests/default-overlays",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "overlays": r#"The `overlays` flake output defines ["overlays"](https://nixos.org/manual/nixpkgs/stable/#chap-overlays) that can be plugged into Nixpkgs.
@@ -624,7 +624,7 @@ Overlays add additional packages or modify or replace existing packages.
 fn default_packages() {
     do_test(
         "./tests/default-packages",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "packages": "The `packages` flake output contains packages that can be added to a shell using `nix shell`.\n",
@@ -695,7 +695,7 @@ fn legacy_by_system() {
     // Test: Ensure that custom schemas can mimic the `formatter` output (that is, { output.${system} = derivation; } works)
     do_test(
         "./tests/legacy-bySystem",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "bySystem": "The `bySystem` flake output defines a per-system output, like a flake's `formatter`.\n",
@@ -734,7 +734,7 @@ fn legacy_by_system() {
 fn legacy_collection_by_system() {
     do_test(
         "./tests/legacy-collectionBySystem",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "collectionBySystem": "The `collectionBySystem` output defines, per system, named collections instead of individual packages.\n",
@@ -852,7 +852,7 @@ fn legacy_collection_by_system() {
 fn legacy_nested_by_system() {
     do_test(
         "./tests/legacy-nestedBySystem",
-        InspectOutput {
+        Output {
             version: 1,
             docs: kv_map! {
                 "nestedBySystem": "The `nestedBySystem` output defines multiple per-system outputs, like a flake's `packages`.\n",

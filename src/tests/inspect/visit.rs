@@ -1,4 +1,4 @@
-use crate::{Collection, Entry, InspectOutput, InventoryItem};
+use crate::inspect::{Collection, Entry, Output, InventoryItem};
 
 use std::ops::ControlFlow;
 
@@ -376,7 +376,7 @@ fn flake_outputs_for_each_entry() {
         },
     };
 
-    let outputs = InspectOutput {
+    let outputs = Output {
         version: 1,
         docs: Default::default(),
         inventory: kv_map! {
@@ -438,7 +438,7 @@ fn flake_outputs_for_each_item() {
         },
     };
 
-    let outputs = InspectOutput {
+    let outputs = Output {
         version: 1,
         docs: Default::default(),
         inventory: kv_map! {
@@ -506,7 +506,7 @@ fn flake_outputs_for_each_item_with_break() {
         },
     };
 
-    let outputs = InspectOutput {
+    let outputs = Output {
         version: 1,
         docs: Default::default(),
         inventory: kv_map! {

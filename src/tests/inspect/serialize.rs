@@ -1,6 +1,6 @@
 use pretty_assertions::assert_eq;
 
-use crate::{Collection, Entry, InspectOutput};
+use crate::inspect::{Collection, Entry, Output};
 
 macro_rules! kv_map {
     {} => { [].into() };
@@ -13,7 +13,7 @@ macro_rules! set {
     [$head:tt $(, $tail:tt)* $(,)?] => { [$head.into() $(, $tail.into())* ].into() };
 }
 
-fn do_test(actual: InspectOutput, expected: &str) {
+fn do_test(actual: Output, expected: &str) {
     let actual = serde_json::to_string_pretty(&actual).unwrap();
 
     assert_eq!(actual, expected);
@@ -21,7 +21,7 @@ fn do_test(actual: InspectOutput, expected: &str) {
 
 #[test]
 fn empty() {
-    let actual = InspectOutput::new();
+    let actual = Output::new();
 
     let expected = indoc::indoc!(
         r#"{
@@ -36,7 +36,7 @@ fn empty() {
 
 #[test]
 fn custom_modules() {
-    let actual = InspectOutput {
+    let actual = Output {
         version: 1,
         docs: kv_map! {
             "customModules": "The `customModules` flake output defines something the NixOS module system would consume.\n",
@@ -98,7 +98,7 @@ fn custom_modules() {
 
 #[test]
 fn default_formatter() {
-    let actual = InspectOutput {
+    let actual = Output {
         version: 1,
         docs: kv_map! {
             "formatter": "The `formatter` output specifies the package to use to format the project.\n",
